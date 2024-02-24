@@ -8,6 +8,7 @@ import com.example.msingresscomment.model.request.UpdateCommentRequest;
 import com.example.msingresscomment.model.response.CommentResponse;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CommentMapper {
     public static CommentResponse buildCommentResponse(CommentEntity commentEntity) {
@@ -31,7 +32,6 @@ public class CommentMapper {
     public static CommentResponse getComments(CommentEntity entity){
       return CommentResponse.builder()
               .userId(entity.getUserId())
-              .productId(entity.getProductId())
               .text(entity.getText())
               .build();
     }

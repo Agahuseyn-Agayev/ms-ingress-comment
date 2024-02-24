@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import static com.example.msingresscomment.model.enums.Status.*;
+import static javax.persistence.EnumType.*;
 import static javax.persistence.GenerationType.IDENTITY;
 
 
@@ -30,7 +30,7 @@ public class CommentEntity {
     private Long userId;
     private Long productId;
     private String text;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(STRING)
     private Status status;
     @CreationTimestamp
     private LocalDateTime createdAt;

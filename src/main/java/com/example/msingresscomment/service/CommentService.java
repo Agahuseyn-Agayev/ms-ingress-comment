@@ -10,6 +10,7 @@ import com.example.msingresscomment.model.request.UpdateCommentRequest;
 import com.example.msingresscomment.model.response.CommentResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.aop.AopAutoConfiguration;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,11 +56,14 @@ public class CommentService {
         log.info("ActionLog.deleteComment.end id:{}", commentId);
     }
 
-    public List<CommentResponse> getCommentsByProduct() {
+    public List<CommentResponse> getComments(Long productId) {
         log.info("ActionLog.getCommentsByProduct.start");
         log.info("ActionLog.getCommentsByProduct.end");
-        return commentRepository.findAll().stream().
-                map(CommentMapper::getComments).collect(Collectors.toList());
+        return commentRepository.findAllCommentByProductId(productId)
+                .stream()
+                .map(CommentMapper::getComments)
+                .collect(Collectors.toList());
+
 
     }
 
@@ -70,6 +74,8 @@ public class CommentService {
                 ()->new NotFoundException("COMMENT_NOT_FOUND")
         );
     }
+
+//    private CommentEntity fetchProductId()
     private CommentEntity fetchCommentIfExitsByCommentIdAndUserId(Long commentId,Long userId){
         log.info("ActionLog.fetchCommentIfExitsByUserId.start id:{}", userId);
         log.info("ActionLog.fetchCommentIfExitsByUserId.end id:{}", userId);

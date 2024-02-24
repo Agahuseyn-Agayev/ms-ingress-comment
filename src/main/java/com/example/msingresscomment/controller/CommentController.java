@@ -30,22 +30,22 @@ public class CommentController {
         service.saveComment(request);
     }
 
-    @PutMapping("/{commentId}")
+    @PutMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
-    public void updateComment(@PathVariable Long commentId, @RequestHeader(USER_ID) Long userId,
+    public void updateComment(@PathVariable Long id, @RequestHeader(USER_ID) Long userId,
                               @RequestBody UpdateCommentRequest request) {
-        service.updateComment(commentId, userId, request);
+        service.updateComment(id, userId, request);
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(NO_CONTENT)
-    public void deleteComment(@PathVariable Long commentId, @RequestHeader(USER_ID) Long userId) {
-        service.deleteComment(commentId, userId);
+    public void deleteComment(@PathVariable Long id, @RequestHeader(USER_ID) Long userId) {
+        service.deleteComment(id, userId);
     }
 
-    @GetMapping
-    public List<CommentResponse> getComments() {
-        return service.getCommentsByProduct();
+    @GetMapping("/products/{id}")
+    public List<CommentResponse> getComments(@PathVariable Long id) {
+        return service.getComments(id);
     }
 
 

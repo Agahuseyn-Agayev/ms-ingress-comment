@@ -8,10 +8,10 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Getter
 @RequiredArgsConstructor
-@FieldDefaults(level = PRIVATE,makeFinal = true)
+@FieldDefaults(level = PRIVATE, makeFinal = true)
 public enum ExceptionMessage {
     UNEXPECTED_ERROR("Unexpected error occurred"),
     COMMENT_NOT_FOUND("Comment not found");
 
-    private final String message;
+    final String message;
 }
